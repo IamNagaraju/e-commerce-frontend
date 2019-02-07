@@ -1,26 +1,21 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
-
+import CategoryIndex from "./components/categories/index"
+import Home from "./components/home/index"
+import { BrowserRouter, Link, Route } from "react-router-dom"
+import CategoryShow from "./components/categories/show"
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
+      <BrowserRouter>
+        <div className="App">
+          <li><Link to="/"  >Home</Link></li>
+          <li><Link to="/categories">Categories</Link></li>
+          <li><Link to="/">Home</Link></li>
+          <Route path="/" exact component={Home} />
+          <Route path="/categories" exact component={CategoryIndex} />
+          <Route path="/categories/:id" component={CategoryShow} />
+        </div>
+      </BrowserRouter>
     );
   }
 }
